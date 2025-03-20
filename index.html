@@ -10,25 +10,36 @@
             margin: 0;
             padding: 20px;
             font-family: Arial, sans-serif;
-            background-color: #ffffff; /* Пытаемся задать светлый фон */
+            background-color: #ffffff; /* Светлый фон */
             color: #000000; /* Чёрный текст */
+        }
+        /* Переопределяем переменные Telegram */
+        :root {
+            --tg-theme-bg-color: #ffffff;
+            --tg-theme-text-color: #000000;
+            --tg-theme-button-color: #0088cc;
+            --tg-theme-button-text-color: #ffffff;
         }
     </style>
 </head>
 <body>
     <p>Перенаправляем на оплату...</p>
     <script>
-        // Получаем сумму из URL (?amount=200)
+        // Получаем сумму из URL
         const urlParams = new URLSearchParams(window.location.search);
         const amount = urlParams.get('amount') || '0';
         const yoomoneyUrl = `https://yoomoney.ru/to/410011489548199/${parseInt(amount)}`;
 
-        // Автоматический редирект
-        window.location.href = yoomoneyUrl;
-
-        // Инициализируем Telegram Web App (на всякий случай)
+        // Инициализируем Web App
         Telegram.WebApp.expand();
         Telegram.WebApp.ready();
+
+        // Принудительно задаём светлый фон и шапку
+        Telegram.WebApp.setBackgroundColor('#ffffff');
+        Telegram.WebApp.setHeaderColor('#ffffff');
+
+        // Редирект внутри Web App
+        window.location.href = yoomoneyUrl;
     </script>
 </body>
 </html>
