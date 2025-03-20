@@ -6,16 +6,27 @@
     <title>Оплата</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { margin: 0; background-color: #ffffff; }
-        iframe { width: 100%; height: 100vh; border: none; }
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff; /* Пытаемся задать светлый фон */
+            color: #000000; /* Чёрный текст */
+        }
     </style>
 </head>
 <body>
-    <iframe id="yoomoney-frame" src="" frameborder="0"></iframe>
+    <p>Перенаправляем на оплату...</p>
     <script>
+        // Получаем сумму из URL (?amount=200)
         const urlParams = new URLSearchParams(window.location.search);
         const amount = urlParams.get('amount') || '0';
-        document.getElementById('yoomoney-frame').src = `https://yoomoney.ru/to/410011489548199/100`;
+        const yoomoneyUrl = `https://yoomoney.ru/to/410011489548199/${parseInt(amount)}`;
+
+        // Автоматический редирект
+        window.location.href = yoomoneyUrl;
+
+        // Инициализируем Telegram Web App (на всякий случай)
         Telegram.WebApp.expand();
         Telegram.WebApp.ready();
     </script>
