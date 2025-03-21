@@ -23,11 +23,12 @@
     </style>
 </head>
 <body>
+    <p></p>
     <script>
         // Получаем сумму из URL
         const urlParams = new URLSearchParams(window.location.search);
         const amount = urlParams.get('amount') || '0';
-        const yoomoneyUrl = https://yoomoney.ru/to/410011489548199/${parseInt(amount)};
+        const yoomoneyUrl = `https://yoomoney.ru/to/410011489548199/${parseInt(amount)}`;
 
         // Инициализируем Web App
         Telegram.WebApp.expand();
