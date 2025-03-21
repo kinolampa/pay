@@ -24,41 +24,22 @@
 </head>
 <body>
     <p></p>
-    <script>
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0];
-        k.async=1;k.src=r;a.parentNode.insertBefore(k,a);
-    })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+<script>
+        // Получаем сумму из URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const amount = urlParams.get('amount') || '0';
+        const yoomoneyUrl = https://yoomoney.ru/to/410011489548199/${parseInt(amount)};
 
-    ym(XXXXXXXX, "init", {
-        clickmap: true,
-        trackLinks: true,
-        accurateTrackBounce: true
-    });
+        // Инициализируем Web App
+        Telegram.WebApp.expand();
+        Telegram.WebApp.ready();
 
-    // Получаем сумму из URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const amount = urlParams.get('amount') || '0';
-    const yoomoneyUrl = `https://yoomoney.ru/to/410011489548199/${parseInt(amount)}`;
+        // Принудительно задаём светлый фон и шапку
+        Telegram.WebApp.setBackgroundColor('#ffffff');
+        Telegram.WebApp.setHeaderColor('#ffffff');
 
-    // Инициализируем Web App
-    Telegram.WebApp.expand();
-    Telegram.WebApp.ready();
-
-    // Принудительно задаём светлый фон и шапку
-    Telegram.WebApp.setBackgroundColor('#ffffff');
-    Telegram.WebApp.setHeaderColor('#ffffff');
-
-    // Отправляем hit в Яндекс.Метрику и редиректим, когда запрос выполнен
-    if (window.ym) {
-        ym(100502680, "hit", window.location.href, {callback: () => {
-            window.location.href = yoomoneyUrl;
-        }});
-    } else {
-        window.location.href = yoomoneyUrl; // Если метрика не загрузилась, редиректим сразу
-    }
-</script>
+        // Редирект внутри Web App
+        window.location.href = yoomoneyUrl;
+    </script>
 </body>
 </html>
